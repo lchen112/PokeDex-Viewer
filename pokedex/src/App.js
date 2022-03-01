@@ -99,8 +99,8 @@ function App() {
             <span class="slider round"></span>
           </label>
         </div>
-        <img src={frontImage} />
-        <img src={backImage} />
+        <img width="200" height="200" src={frontImage} />
+        <img width="200" height="200" src={backImage} />
       </StyledDiv>
       <PokemonMoves pokeMetadata={pokeMetadata} />
     </div>
