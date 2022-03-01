@@ -12,6 +12,11 @@ export const getPokeMetadata = async (selectionIndex) => {
   return pokemonMetadata;
 };
 
+export const getMoveMetadata = async (url) => {
+  const moveMetadata = await fetch(url).then((res) => res.json());
+  return moveMetadata;
+};
+
 export const getPokemonImageFront = (selectionIndex) => {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${selectionIndex}.png`;
 };
