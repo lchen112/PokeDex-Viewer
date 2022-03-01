@@ -6,6 +6,7 @@ export const getPokemonList = async () => {
   return pokemonData.results;
 };
 
-export const getPokemonImage = () => {
-  return "https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/1.png";
+export const getPokemonImage = (selectionIndex) => {
+  console.log({ selectionIndex });
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${selectionIndex}.png`;
 };

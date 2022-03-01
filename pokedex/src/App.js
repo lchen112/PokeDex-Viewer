@@ -7,27 +7,44 @@ import React from "react";
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
   const [image, setImage] = useState();
+  const [selectionIndex, setSelectionIndex] = useState(1);
+
   useEffect(() => {
     const getAllPokemon = async () => {
       let pokemonObjs = await getPokemonList();
-      console.log("poke objs", pokemonObjs);
       let pokeNames = [];
       pokemonObjs && pokemonObjs.forEach((po) => pokeNames.push(po.name));
       setPokemonList(pokemonObjs);
-      let image = getPokemonImage();
-      setImage(image);
     };
     getAllPokemon();
   }, []);
 
+  useEffect(() => {
+    setImage(getPokemonImage(selectionIndex));
+  }, [selectionIndex]);
+
+  const handleDropdownChange = (event) => {
+    console.log(event);
+    let selectionIndex =
+      document.getElementById("pokemon-dropdown").selectedIndex;
+    console.log(selectionIndex);
+    setSelectionIndex(selectionIndex);
+  };
+
   return (
     <div className="App">
-      <div>Pokedex</div>
-      <select name="Pokemon">
+      <h1>Pokedex</h1>
+      <select
+        id="pokemon-dropdown"
+        onChange={handleDropdownChange}
+        name="Pokemon Dropdown"
+      >
         {pokemonList &&
           pokemonList.map((pl) => <option value={pl.name}> {pl.name} </option>)}
       </select>
-      <img src={getPokemonImage()} />
+      <div>
+        <img src={image} />
+      </div>
     </div>
   );
 }
