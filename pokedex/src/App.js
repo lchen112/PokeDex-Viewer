@@ -19,10 +19,11 @@ import { ToggleSwitch } from "./components/ToggleSwitch";
 const StyledHeader = styled.h1`
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 const StyledDiv = styled.div`
-  border: 4px solid lavender;
+  border: 4px solid pink;
   margin-top: 8px;
   margin-bottom: 8px;
   padding-top: 8px;

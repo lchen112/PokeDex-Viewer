@@ -21,7 +21,7 @@ const StyledModal = styled.div`
   overflow-y: scroll;
   transform: translate(-50%, -50%);
   background: white;
-  border: 2px solid #ccc;
+  border: 2px solid green;
   border-radius: 4px;
   padding: 12px;
   transition: 1.1s ease-out;
