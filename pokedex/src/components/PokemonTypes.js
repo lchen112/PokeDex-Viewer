@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
-  color: palevioletred;
+  color: purple;
   font-size: 1em;
   margin: 0 1em;
-  border: 2px solid palevioletred;
+  border: 2px solid;
   border-radius: 3px;
-  color: tomato;
-  border-color: tomato;
+  border-color: purple;
   height: max-content;
 `;
 
