@@ -3,18 +3,20 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import {
   getPokemonList,
-  getPokemonImage,
   getPokemonImageFront,
   getPokemonImageBack,
+  getPokeMetadata,
 } from "./service/pokemonService";
 import React from "react";
-//https://pokeapi.co/docs/v2#pokemon
+import { capitalize } from "./utils/utils";
+import { PokemonTypes } from "./components/PokemonTypes";
+
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
   const [backImage, setBackImage] = useState();
   const [frontImage, setFrontImage] = useState();
-
   const [selectionIndex, setSelectionIndex] = useState(1);
+  const [pokeMetadata, setPokemetadata] = useState();
 
   useEffect(() => {
     const getAllPokemon = async () => {
@@ -27,15 +29,18 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const getPokemonData = async () => {
+      let pokeData = await getPokeMetadata(selectionIndex);
+      setPokemetadata(pokeData);
+    };
+    getPokemonData();
     setFrontImage(getPokemonImageFront(selectionIndex));
     setBackImage(getPokemonImageBack(selectionIndex));
   }, [selectionIndex]);
 
   const handleDropdownChange = (event) => {
-    console.log(event);
     let selectionIndex =
       document.getElementById("pokemon-dropdown").selectedIndex + 1;
-    console.log(selectionIndex);
     setSelectionIndex(selectionIndex);
   };
 
@@ -48,12 +53,18 @@ function App() {
         name="Pokemon Dropdown"
       >
         {pokemonList &&
-          pokemonList.map((pl) => <option value={pl.name}> {pl.name} </option>)}
+          pokemonList.map((pl) => (
+            <option key={pl.name} value={pl.name}>
+              {capitalize(pl.name)}
+            </option>
+          ))}
       </select>
+      <PokemonTypes pokeMetadata={pokeMetadata} />
       <div>
         <img src={frontImage} />
         <img src={backImage} />
       </div>
+      {JSON.stringify(pokeMetadata)}
     </div>
   );
 }
