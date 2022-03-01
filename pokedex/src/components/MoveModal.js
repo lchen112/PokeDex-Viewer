@@ -68,10 +68,9 @@ const StyledModal = styled.div`
 
 export const MoveModal = ({ moveMetadata, modalOpen, toggleModalOpen }) => {
   const getMoveEffect = () => {
-    console.log(moveMetadata.effect_entries[0].effect);
-    console.log("test");
-    return moveMetadata.effect_entries[0].effect;
+    return moveMetadata?.effect_entries[0].effect;
   };
+
   return (
     modalOpen && (
       <StyledModal>
@@ -79,10 +78,12 @@ export const MoveModal = ({ moveMetadata, modalOpen, toggleModalOpen }) => {
           <StyledDiv>
             <button onClick={() => toggleModalOpen()}>Close</button>
           </StyledDiv>
-          <p>Skill Name: {moveMetadata?.name}</p>
-          <p>Effect: {getMoveEffect()}</p>
-          <p>Accuracy: {moveMetadata?.accuracy || 0}</p>
-          <p>PP: {moveMetadata?.pp}</p>
+          <div>
+            <p>Skill Name: {moveMetadata?.name}</p>
+            <p>Effect: {getMoveEffect()}</p>
+            <p>Accuracy: {moveMetadata?.accuracy || 0}</p>
+            <p>PP: {moveMetadata?.pp}</p>
+          </div>
         </div>
       </StyledModal>
     )
