@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import useToggle from "../hooks/useToggle";
 import { getMoveMetadata } from "../service/pokemonService";
+import { MoveModal } from "./MoveModal";
 
 const StyledButton = styled.button`
   background-color: white;
   color: ${({ color }) => color || "blue"};
   padding: 10px;
-  border: 1px solid ${({ color }) => color || "blue"};
+  border: 2px solid ${({ color }) => color || "blue"};
   display: inline-block;
   margin: 5px;
   cursor: pointer;
@@ -25,8 +27,9 @@ const StyledDiv = styled.div`
 
 export const PokemonMoves = ({ pokeMetadata }) => {
   const [pokeMoves, setPokeMoves] = useState([]);
-  const [moveMetadata, setMoveMetadata] = useState();
   const [moveUrl, setMoveUrl] = useState();
+  const [moveMetadata, setMoveMetadata] = useState();
+  const [modalOpen, toggleModalOpen] = useToggle(false);
 
   useEffect(() => {
     pokeMetadata && getAllMoves();
@@ -55,18 +58,27 @@ export const PokemonMoves = ({ pokeMetadata }) => {
     let moveUrlLink = pokeMetadata.moves.find((m) => m.move.name == moveName)
       .move.url;
     setMoveUrl(moveUrlLink);
+    console.log(modalOpen);
+    !modalOpen && toggleModalOpen();
   };
 
   return (
     <StyledDiv>
-      Moves:
-      {pokeMoves &&
-        pokeMoves.length > 0 &&
-        pokeMoves.map((pt) => (
-          <StyledButton id={pt} key={pt} onClick={handleMoveClick}>
-            {pt}
-          </StyledButton>
-        ))}
+      <MoveModal
+        moveMetadata={moveMetadata}
+        modalOpen={modalOpen}
+        toggleModalOpen={toggleModalOpen}
+      />
+      <StyledDiv>
+        Moves:
+        {pokeMoves &&
+          pokeMoves.length > 0 &&
+          pokeMoves.map((pt) => (
+            <StyledButton id={pt} key={pt} onClick={handleMoveClick}>
+              {pt}
+            </StyledButton>
+          ))}
+      </StyledDiv>
     </StyledDiv>
   );
 };

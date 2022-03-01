@@ -18,6 +18,12 @@ const StyledHeader = styled.h1`
   justify-content: center;
 `;
 
+const StyledDiv = styled.div`
+  border: 2px solid;
+  margin-top: 8px;
+  margin-bottom: 8px;
+`;
+
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
   const [backImage, setBackImage] = useState();
@@ -63,13 +69,11 @@ function App() {
         pokemonList={pokemonList}
       />
       <PokemonTypes pokeMetadata={pokeMetadata} />
-      <div>
+      <StyledDiv>
         <img src={frontImage} />
         <img src={backImage} />
-      </div>
+      </StyledDiv>
       <PokemonMoves pokeMetadata={pokeMetadata} />
-
-      {/* {JSON.stringify(pokeMetadata)} */}
     </div>
   );
 }
