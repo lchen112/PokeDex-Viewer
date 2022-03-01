@@ -17,10 +17,14 @@ export const getMoveMetadata = async (url) => {
   return moveMetadata;
 };
 
-export const getPokemonImageFront = (selectionIndex) => {
-  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${selectionIndex}.png`;
+export const getPokemonImageFront = (selectionIndex, shiny) => {
+  return shiny
+    ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${selectionIndex}.png`
+    : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${selectionIndex}.png`;
 };
 
-export const getPokemonImageBack = (selectionIndex) => {
-  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${selectionIndex}.png`;
+export const getPokemonImageBack = (selectionIndex, shiny) => {
+  return shiny
+    ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/${selectionIndex}.png`
+    : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/${selectionIndex}.png`;
 };
