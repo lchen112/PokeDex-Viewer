@@ -5,17 +5,17 @@ const StyledButton = styled.button`
   color: palevioletred;
   font-size: 1em;
   margin: 0 1em;
-  padding: 0.25em 1em;
   border: 2px solid palevioletred;
   border-radius: 3px;
   color: tomato;
   border-color: tomato;
+  height: max-content;
 `;
 
 const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 16px;
+  align-items: center;
 `;
 
 export const PokemonTypes = ({ pokeMetadata }) => {

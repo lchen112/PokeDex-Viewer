@@ -8,8 +8,8 @@ import {
   getPokeMetadata,
 } from "./service/pokemonService";
 import React from "react";
-import { capitalize } from "./utils/utils";
 import { PokemonTypes } from "./components/PokemonTypes";
+import { SelectDropdown } from "./components/SelectDropdown";
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -47,24 +47,16 @@ function App() {
   return (
     <div className="App">
       <h1>Pokedex</h1>
-      <select
-        id="pokemon-dropdown"
-        onChange={handleDropdownChange}
-        name="Pokemon Dropdown"
-      >
-        {pokemonList &&
-          pokemonList.map((pl) => (
-            <option key={pl.name} value={pl.name}>
-              {capitalize(pl.name)}
-            </option>
-          ))}
-      </select>
+      <SelectDropdown
+        handleDropdownChange={handleDropdownChange}
+        pokemonList={pokemonList}
+      />
       <PokemonTypes pokeMetadata={pokeMetadata} />
       <div>
         <img src={frontImage} />
         <img src={backImage} />
       </div>
-      {JSON.stringify(pokeMetadata)}
+      {/* {JSON.stringify(pokeMetadata)} */}
     </div>
   );
 }
