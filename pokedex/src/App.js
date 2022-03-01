@@ -10,6 +10,13 @@ import {
 import React from "react";
 import { PokemonTypes } from "./components/PokemonTypes";
 import { SelectDropdown } from "./components/SelectDropdown";
+import { PokemonMoves } from "./components/PokemonMoves";
+import styled from "styled-components";
+import { Pokeball } from "./components/Pokeball";
+const StyledHeader = styled.h1`
+  display: flex;
+  justify-content: center;
+`;
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -46,7 +53,11 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Pokedex</h1>
+      <StyledHeader>
+        <Pokeball />
+        Pokedex
+        <Pokeball />
+      </StyledHeader>
       <SelectDropdown
         handleDropdownChange={handleDropdownChange}
         pokemonList={pokemonList}
@@ -56,6 +67,8 @@ function App() {
         <img src={frontImage} />
         <img src={backImage} />
       </div>
+      <PokemonMoves pokeMetadata={pokeMetadata} />
+
       {/* {JSON.stringify(pokeMetadata)} */}
     </div>
   );
