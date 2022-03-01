@@ -1,12 +1,19 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
-import { getPokemonList, getPokemonImage } from "./service/pokemonService";
+import {
+  getPokemonList,
+  getPokemonImage,
+  getPokemonImageFront,
+  getPokemonImageBack,
+} from "./service/pokemonService";
 import React from "react";
 //https://pokeapi.co/docs/v2#pokemon
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
-  const [image, setImage] = useState();
+  const [backImage, setBackImage] = useState();
+  const [frontImage, setFrontImage] = useState();
+
   const [selectionIndex, setSelectionIndex] = useState(1);
 
   useEffect(() => {
@@ -20,13 +27,14 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setImage(getPokemonImage(selectionIndex));
+    setFrontImage(getPokemonImageFront(selectionIndex));
+    setBackImage(getPokemonImageBack(selectionIndex));
   }, [selectionIndex]);
 
   const handleDropdownChange = (event) => {
     console.log(event);
     let selectionIndex =
-      document.getElementById("pokemon-dropdown").selectedIndex;
+      document.getElementById("pokemon-dropdown").selectedIndex + 1;
     console.log(selectionIndex);
     setSelectionIndex(selectionIndex);
   };
@@ -43,7 +51,8 @@ function App() {
           pokemonList.map((pl) => <option value={pl.name}> {pl.name} </option>)}
       </select>
       <div>
-        <img src={image} />
+        <img src={frontImage} />
+        <img src={backImage} />
       </div>
     </div>
   );
