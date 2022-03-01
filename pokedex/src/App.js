@@ -14,6 +14,8 @@ import { PokemonMoves } from "./components/PokemonMoves";
 import styled from "styled-components";
 import { Pokeball } from "./components/Pokeball";
 import useToggle from "./hooks/useToggle";
+import { ToggleSwitch } from "./components/ToggleSwitch";
+
 const StyledHeader = styled.h1`
   display: flex;
   justify-content: center;
@@ -73,10 +75,6 @@ function App() {
     setSelectionIndex(selectionIndex);
   };
 
-  const handleShiny = () => {
-    toggleShinyPokemon();
-  };
-
   return (
     <div className="App">
       <StyledHeader>
@@ -92,13 +90,11 @@ function App() {
       </div>
       <PokemonTypes pokeMetadata={pokeMetadata} />
       <StyledDiv>
-        <div>
-          <label class="switch">
-            Let's see it shiny!
-            <input type="checkbox" value={shinyPokemon} onClick={handleShiny} />
-            <span class="slider round"></span>
-          </label>
-        </div>
+        <ToggleSwitch
+          labelName={"Make it shiny!"}
+          value={shinyPokemon}
+          handleOnClick={toggleShinyPokemon}
+        />
         <img width="200" height="200" src={frontImage} />
         <img width="200" height="200" src={backImage} />
       </StyledDiv>
