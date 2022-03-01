@@ -32,11 +32,9 @@ export const PokemonMoves = ({ pokeMetadata }) => {
   const getMoves = () => {
     if (pokeMetadata.hasOwnProperty("moves")) {
       let moves = [];
-      console.log(pokeMetadata.moves);
       pokeMetadata.moves.forEach((pt) => {
         moves.push(pt.move.name);
       });
-      console.log(moves);
       setPokeMoves(moves);
     }
   };

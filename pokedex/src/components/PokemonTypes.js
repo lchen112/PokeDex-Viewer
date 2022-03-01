@@ -28,11 +28,9 @@ export const PokemonTypes = ({ pokeMetadata }) => {
   const getTypes = () => {
     if (pokeMetadata.hasOwnProperty("types")) {
       let types = [];
-      console.log(pokeMetadata.types);
       pokeMetadata.types.forEach((pt) => {
         types.push(pt.type.name);
       });
-      console.log(types);
       setPokeTypes(types);
     }
   };
